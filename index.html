@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Mi Historia Contigo 💖</title>
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FRTHSW117H"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-FRTHSW117H');
+</script>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+
+html,body{
+height:100%;
+overflow:hidden;
+font-family:'Georgia',serif;
+color:white;
+}
+
+/* Fondo cinematografico con leve movimiento */
+body{
+background:url('fondo.jpg') no-repeat center center;
+background-size:cover;
+animation: slowZoom 25s ease-in-out infinite alternate;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+@keyframes slowZoom{
+from{background-size:100%;}
+to{background-size:110%;}
+}
+
+/* Overlay magico */
+.overlay{
+position:absolute;
+width:100%;
+height:100%;
+background:linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.75));
+backdrop-filter:blur(4px);
+}
+
+/* Carta */
+.carta{
+position:relative;
+width:92%;
+max-width:850px;
+max-height:85vh;
+padding:25px;
+background:rgba(0,0,0,0.6);
+border-radius:25px;
+box-shadow:0 0 40px rgba(255,182,193,0.6);
+overflow-y:auto;
+-webkit-overflow-scrolling:touch;
+}
+
+/* Texto maquina de escribir */
+#texto{
+white-space:pre-line;
+font-size:16px;
+line-height:1.6;
+}
+
+/* Corazones */
+.heart{
+position:absolute;
+color:rgba(255,105,180,0.8);
+animation:floatUp linear infinite;
+}
+
+@keyframes floatUp{
+from{transform:translateY(100vh) scale(1);opacity:1;}
+to{transform:translateY(-10vh) scale(1.8);opacity:0;}
+}
+
+/* Destellos magicos */
+.sparkle{
+position:absolute;
+width:6px;
+height:6px;
+background:white;
+border-radius:50%;
+box-shadow:0 0 8px white;
+animation:twinkle 2s infinite ease-in-out;
+}
+
+@keyframes twinkle{
+0%,100%{opacity:0.2;}
+50%{opacity:1;}
+}
+
+/* Responsive */
+@media(max-width:600px){
+#texto{font-size:14px;}
+}
+</style>
+</head>
+
+<body onclick="playMusic()">
+
+<div class="overlay"></div>
+
+<audio id="bgMusic" loop>
+<source src="Memories.mp3" type="audio/mpeg">
+</audio>
+
+<div class="carta">
+<h2 style="text-align:center;margin-bottom:15px;">Mi Vida, Munequita Mia 💖</h2>
+<div id="texto"></div>
+</div>
+
+<script>
+/* CARTA COMPLETA */
+const mensaje = `Mi vida, munequita mia, me haces demasiada falta...
+
+Te extrano al despertar, cuando mi mano busca la tuya y solo encuentra vacio.
+
+Te extrano en las tardes silenciosas, cuando mi corazon se queda detenido en tu recuerdo...
+
+Te extrano en las noches, cuando cierro los ojos y solo deseo sentir tu calor abrazandome...
+
+Te necesito mas de lo que alguna vez imagine necesitar a alguien.
+Necesito tu voz calmando mis tormentas.
+Necesito tus abrazos donde el mundo desaparece.
+
+En tus brazos encontre mi hogar, mi refugio, mi unico lugar feliz.
+
+Jamas habia sentido tanto amor, tanta pasion, tanta ternura pura del corazon.
+
+Todos los dias pienso solamente en ti.
+Todo me lleva a ti.
+Mi corazon late con tu nombre grabado en cada latido.
+
+Munequita mia...
+Eres mi necesidad mas profunda, mi pensamiento constante, mi deseo eterno.
+
+Si supieras lo que daria por abrazarte ahora mismo...
+Por perderme en tus ojitos de miel.
+Por llenarte de besos como en el pasillo del amor.
+
+No hay nada en este mundo que ame mas que a ti.
+
+Te extrano demasiado mi vida...`;
+
+/* Maquina de escribir */
+let i = 0;
+function typeWriter(){
+if(i < mensaje.length){
+document.getElementById("texto").innerHTML += mensaje.charAt(i);
+i++;
+setTimeout(typeWriter, 35);
+}
+}
+typeWriter();
+
+/* Música con fade elegante */
+function playMusic(){
+let music=document.getElementById("bgMusic");
+music.volume=0;
+music.play();
+let fade=setInterval(()=>{
+if(music.volume<0.9){
+music.volume+=0.03;
+}else{
+clearInterval(fade);
+}
+},200);
+}
+
+/* Corazones magicos */
+function createHeart(){
+const heart=document.createElement("div");
+heart.classList.add("heart");
+heart.innerHTML="❤";
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(15+Math.random()*30)+"px";
+heart.style.animationDuration=(6+Math.random()*6)+"s";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),12000);
+}
+setInterval(createHeart,900);
+
+/* Destellos */
+function createSparkle(){
+const sparkle=document.createElement("div");
+sparkle.classList.add("sparkle");
+sparkle.style.top=Math.random()*100+"vh";
+sparkle.style.left=Math.random()*100+"vw";
+document.body.appendChild(sparkle);
+setTimeout(()=>sparkle.remove(),2000);
+}
+setInterval(createSparkle,300);
+</script>
+
+</body>
+</html>
